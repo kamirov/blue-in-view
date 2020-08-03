@@ -1,7 +1,13 @@
 video
     id
-    officer[]
+    recorder?
         name
+        email
+    officer[]
+        id?
+        name?
     city
     country
     url
+    taken_at
+    submitted_at
