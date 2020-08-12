@@ -1,11 +1,12 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { dimensions, widths } from "../styles/dimensions";
+import { dimensions } from "../styles/dimensions";
 import Container from "./Container";
 import Logo from "./Logo";
-import { colors } from "../theme";
 import { Link } from "gatsby";
-import SearchForm from "./search/SearchForm";
+import {Button} from "@material-ui/core";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import SendIcon from '@material-ui/icons/Send';
 
 interface Props {
     className? : string
@@ -16,20 +17,40 @@ const Header : React.FC<Props> = ({ className }) => {
         <StyledLogo/>
     </Link>;
 
-    const headerContent = <MultiItemContent>
+    const logoAndMenu = <MultiItemContent>
         {linkedLogo}
-        <StyledSearch/>
+        <ButtonGroup variant="contained" color="primary" aria-label="text primary button group">
+            <Button>About</Button>
+            <Button
+                color="primary"
+                endIcon={<SendIcon />}
+            >
+                Send a Video
+            </Button>
+        </ButtonGroup>
     </MultiItemContent>;
 
     return <StyledHeader className={className}>
-        {headerContent}
+        {logoAndMenu}
+        <Container>
+            <Subtitle>Keeping watch on our police officers</Subtitle>
+        </Container>
     </StyledHeader>;
 };
 
 const StyledHeader = styled.header`
-    padding: ${dimensions.containerPadding}rem 0;
-    border-bottom: 2px solid ${colors.secondary}
+    padding: ${dimensions.containerPadding} ${dimensions.containerSidePadding};
 `;
+
+const Subtitle = styled.span`
+    text-align: center;
+    position: absolute;
+    top: -2.6rem;
+    font-size: 0.8rem;
+    left: 14rem;
+    font-style: oblique;
+    font-weight: bold;
+`
 
 const Content = styled(Container)`
     display: flex;
@@ -41,18 +62,12 @@ const Content = styled(Container)`
 
 const MultiItemContent = styled(Content)`
     justify-content: space-between;
+    padding: 1rem 1rem 2rem;
 `;
 
 const StyledLogo = styled(Logo)`
     height: 60px;
     width: auto;
-`;
-
-const StyledSearch = styled(SearchForm)`
-    max-width: 50%;
-    position: relative;
-    top: 4px;
-    min-width: ${widths.xl / 4}px;
 `;
 
 export default Header;
