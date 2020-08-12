@@ -67,20 +67,24 @@ class IndexPage extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        console.log('props', this.props)
+        const urlParams = new URLSearchParams(window.location.search)
+        const urlCountry = urlParams.get('country') || ""
+        const urlRegion = urlParams.get('region') || ""
+        const urlCity = urlParams.get('city') || ""
+        const urlOfficer = urlParams.get('officer') || ""
 
         const countries = List.distinct(this.props.data.filters.edges.map(f => f.node.country)) as string[]
 
-        const selectedCountry = countries[0]
+        const selectedCountry = countries.includes(urlCountry) ? urlCountry : countries[0]
 
         const regions = this.getRegions(selectedCountry)
-        const selectedRegion = regions[0]
+        const selectedRegion = regions.includes(urlRegion) ? urlRegion : regions[0]
 
         const cities = this.getCities(selectedCountry, selectedRegion)
-        const selectedCity = cities[0]
+        const selectedCity = cities.includes(urlCity) ? urlCity : cities[0]
 
         const officers = this.getOfficerNames(selectedCountry, selectedRegion, selectedCity)
-        const selectedOfficer = allOfficersLabel
+        const selectedOfficer = officers.includes(urlOfficer) ? urlOfficer : allOfficersLabel
 
         const videos = this.getVideos(selectedCountry, selectedRegion, selectedCity, selectedOfficer)
 
@@ -95,6 +99,8 @@ class IndexPage extends React.Component<Props, State> {
             officers,
             videos
         }
+
+        this.updateUrl(selectedCountry, selectedRegion, selectedCity, selectedOfficer)
 
         this.handleCountryChange = this.handleCountryChange.bind(this)
         this.handleRegionChange = this.handleRegionChange.bind(this)
@@ -127,6 +133,8 @@ class IndexPage extends React.Component<Props, State> {
             selectedCity,
             selectedOfficer
         })
+
+        this.updateUrl(selectedCountry, selectedRegion, selectedCity, selectedOfficer)
     }
 
     handleRegionChange(selectedRegion: string) {
@@ -147,6 +155,8 @@ class IndexPage extends React.Component<Props, State> {
             selectedCity,
             selectedOfficer,
         })
+
+        this.updateUrl(this.state.selectedCountry, selectedRegion, selectedCity, selectedOfficer)
     }
 
     handleCityChange(selectedCity: string) {
@@ -162,6 +172,8 @@ class IndexPage extends React.Component<Props, State> {
             selectedCity,
             selectedOfficer,
         })
+
+        this.updateUrl(this.state.selectedCountry, this.state.selectedRegion, selectedCity, selectedOfficer)
     }
 
     handleOfficerChange(selectedOfficer: string) {
@@ -172,6 +184,8 @@ class IndexPage extends React.Component<Props, State> {
             videos,
             selectedOfficer
         })
+
+        this.updateUrl(this.state.selectedCountry, this.state.selectedRegion, this.state.selectedCity, selectedOfficer)
     }
 
     private getRegions(country: string): string[] {
@@ -209,6 +223,24 @@ class IndexPage extends React.Component<Props, State> {
                 recorderName: f.node.recorder.name,
                 recorderEmail: f.node.recorder.email
             }))
+    }
+
+    private updateUrl(country: string, region: string, city: string, officerName: string) {
+        const url = new URL(window.location.href);
+
+        url.searchParams.set('country', country)
+        url.searchParams.set('region', region)
+        url.searchParams.set('city', city)
+
+        if (officerName === allOfficersLabel) {
+            url.searchParams.delete('officer')
+        } else {
+            url.searchParams.set('officer', officerName)
+        }
+
+        const newUrl = url.toString()
+
+        window.history.replaceState({}, window.document.title, newUrl)
     }
 
     private toMenuItem(value: string) {
