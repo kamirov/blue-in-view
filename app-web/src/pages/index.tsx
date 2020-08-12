@@ -333,7 +333,7 @@ const StyledVideoPlayer = styled(VideoPlayer)`
 `
 
 const VideoGalleryItem = styled.div`
-    width: 100%;
+    width: 50%;
     height: 20rem;
     margin: 0 2%;
 
