@@ -6,7 +6,7 @@ export const colors = {
     success: '#37b635',
     error: '#ec1818',
     text: '#444',
-    link: '#46c1be',
+    link: '#3D7ED9',
     background: '#fff',
     table: {
         border    : '#eee',
