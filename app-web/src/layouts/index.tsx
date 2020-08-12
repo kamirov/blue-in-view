@@ -9,7 +9,6 @@ import { ThemeProvider } from "@material-ui/styles";
 import theme from "../theme";
 import SEO from "../components/SEO";
 import Page from "../components/Page";
-import Container from "../components/Container";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "@emotion/styled";
@@ -21,20 +20,20 @@ const IndexLayout: React.FC = ({ children }) => (
             <SEO />
             <LayoutMain>
                 <Page>
-                    <StyledContainer>
+                    <Content>
                         <Header/>
                         <Body>
                             {children}
                         </Body>
                         <Footer />
-                    </StyledContainer>
+                    </Content>
                 </Page>
             </LayoutMain>
         </LayoutRoot>
     </ThemeProvider>
 )
 
-const StyledContainer = styled(Container)`
+const Content = styled.div`
     display: flex;
     min-height: 100vh;
     flex-direction: column;
