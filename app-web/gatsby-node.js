@@ -41,6 +41,37 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions;
 
+    await createTexts();
+
+    async function createTexts() {
+        const allMarkdown = await graphql(`
+            {
+                allMarkdownRemark(limit: 1000) {
+                    edges {
+                        node {
+                            fields {
+                                layout
+                                slug
+                            }
+                        }
+                    }
+                }
+            }
+        `);
+
+        handlePossibleErrors(allMarkdown);
+
+        allMarkdown.data.allMarkdownRemark.edges.forEach(({ node }) => {
+            const { slug, layout } = node.fields;
+
+            createPage({
+                path: slug,
+                component: path.resolve(`./src/templates/${layout || "text"}.tsx`),
+                context: { slug }
+            });
+        });
+    }
+
     function handlePossibleErrors(queryResults) {
         if (queryResults.errors) {
             console.error("Errors in query: ", queryResults.errors);
