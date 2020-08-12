@@ -355,6 +355,7 @@ const VideoGalleryItem = styled.div`
 
     @media (max-width: 700px) {
         margin-top: 3rem;
+        width: 100%;
     }
 `
 
