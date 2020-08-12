@@ -12,12 +12,13 @@ const Footer: React.FC<Props> = ({className}) => {
     return <StyledFooter className={className}>
         <StyledContainer>
             <SocialContainer>
-                {/*<span>Follow us:</span>*/}
+                <span>Follow us:</span>
+                <SocialItemsContainer>
+                    <a href="https://www.youtube.com/channel/UCeDZQwTUCVlFFUtyIwoFDMw" target="_blank">YouTube</a>
+                </SocialItemsContainer>
             </SocialContainer>
             <FooterMenu>
-                <FooterMenuLink to={"/"}>About</FooterMenuLink>
-                <FooterMenuLink to={"/"}>Terms of Use</FooterMenuLink>
-                <FooterMenuLink to={"/"}>Privacy</FooterMenuLink>
+                <FooterMenuLink to={"/about"}>About</FooterMenuLink>
             </FooterMenu>
         </StyledContainer>
     </StyledFooter>
@@ -25,6 +26,10 @@ const Footer: React.FC<Props> = ({className}) => {
 
 const SocialContainer = styled.div`
     font-weight: bold;
+`
+
+const SocialItemsContainer = styled.span`
+    margin-left: 1rem;
 `
 
 const StyledContainer = styled(Container)`
@@ -48,9 +53,9 @@ const FooterMenuLink = styled(Link)`
 
 const StyledFooter = styled.footer`
     border-top: 2px solid #eee;
-    padding-top: ${dimensions.containerPadding}rem;
-    margin-top: ${dimensions.containerPadding}rem;
-    margin-bottom: ${dimensions.containerPadding}rem;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 `
 
 export default Footer
