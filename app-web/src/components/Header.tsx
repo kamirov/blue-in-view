@@ -15,7 +15,7 @@ interface Props {
 const toHomeTitle = "Go to home page"
 
 const emailSubject = `(Blue in View) Video submission`
-const emailBody = `Attach a video to this email or include a link to it. Please make sure to include the location (country and city), approximately when this video took place, and that your video identifies the officer either by name or badge number.`
+const emailBody = `Attach a video to this email or include a link to it. Please make sure to include the location (country and city), approximately when this video took place (at least the year), and that your video identifies the officer either by name or badge number.`
 const sendUrl = `mailto:andrei.khramtsov@gmail.com?subject=${emailSubject}&body=${emailBody}`
 
 const Header : React.FC<Props> = ({ className }) => {
@@ -68,7 +68,7 @@ const Header : React.FC<Props> = ({ className }) => {
                 <DialogContentText id="alert-dialog-description">
                     Click below to send us a video by email either by attaching it or sending us a link.
                     <br/><br/>
-                    Please make sure to include the location (country and city), approximately when this video took place, and that your video identifies the officer either by name or badge number.
+                    Please make sure to include the location (country and city), approximately when this video took place (at least the year), and that your video identifies the officer either by name or badge number.
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
