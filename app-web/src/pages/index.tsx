@@ -10,6 +10,7 @@ import {colors} from "../theme";
 import Container from "../components/Container";
 import {dimensions} from "../styles/dimensions";
 import moment from "moment";
+import {isBrowser} from "../library/ssr.module";
 
 type Props = {
     data : {
@@ -68,6 +69,22 @@ class IndexPage extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
+        if (!isBrowser()) {
+            this.state = {
+                selectedCountry: "",
+                selectedRegion: "",
+                selectedOfficer: "",
+                selectedCity: "",
+                countries: [],
+                regions: [],
+                cities: [],
+                officers: [],
+                videos: []
+            }
+
+            return
+        }
+
         const urlParams = new URLSearchParams(window.location.search)
         const urlCountry = urlParams.get('country') || ""
         const urlRegion = urlParams.get('region') || ""
@@ -107,7 +124,6 @@ class IndexPage extends React.Component<Props, State> {
         this.handleRegionChange = this.handleRegionChange.bind(this)
         this.handleCityChange = this.handleCityChange.bind(this)
         this.handleOfficerChange = this.handleOfficerChange.bind(this)
-
         this.toVideoGalleryItem = this.toVideoGalleryItem.bind(this)
     }
 
