@@ -1,0 +1,16 @@
+{
+    "id": "1",
+    "url": "https://www.youtube.com/embed/Z-PtmP_8z_E",
+    "recorder": {
+        "name": "Sam Sackel",
+        "email": "sam.sackel@gmail.com"
+    },
+    "officer": {
+        "name": "Michael Yazi"
+    },
+    "city": "Montreal",
+    "region": "Quebec",
+    "country" : "Canada",
+    "takenAt": "20200201",
+    "submitedAt": "20200510"
+}

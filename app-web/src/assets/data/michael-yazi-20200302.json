@@ -1,0 +1,16 @@
+{
+    "id": "2",
+    "url": "https://www.youtube.com/embed/jQcSdvB0dxw",
+    "recorder": {
+        "name": "",
+        "email": ""
+    },
+    "officer": {
+        "name": "Michael Yazi"
+    },
+    "city": "Montreal",
+    "region": "Quebec",
+    "country" : "Canada",
+    "takenAt": "20200302",
+    "submitedAt": "20200512"
+}
