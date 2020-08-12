@@ -9,6 +9,7 @@ import VideoPlayer from "../components/VideoPlayer";
 import {colors} from "../theme";
 import Container from "../components/Container";
 import {dimensions} from "../styles/dimensions";
+import moment from "moment";
 
 type Props = {
     data : {
@@ -107,7 +108,7 @@ class IndexPage extends React.Component<Props, State> {
         this.handleCityChange = this.handleCityChange.bind(this)
         this.handleOfficerChange = this.handleOfficerChange.bind(this)
 
-        this.toVideoPlayer = this.toVideoPlayer.bind(this)
+        this.toVideoGalleryItem = this.toVideoGalleryItem.bind(this)
     }
 
     handleCountryChange(selectedCountry: string) {
@@ -247,9 +248,20 @@ class IndexPage extends React.Component<Props, State> {
         return <option key={value} value={value}>{value}</option>
     }
 
-    private toVideoPlayer(video: Video) {
+    private toVideoGalleryItem(video: Video) {
         const title = `Video of ${this.state.selectedOfficer}`
-        return <StyledVideoPlayer url={video.url} title={title} key={video.url} />
+
+        const takenAt = moment(video.takenAt, 'YYYY-MM-DD').format('LL')
+        const submittedAt = moment(video.submittedAt, 'YYYY-MM-DD').format('LL')
+
+        const recorderName = video.recorderName ? video.recorderName : 'Anonymous'
+
+        return <VideoGalleryItem>
+            <StyledVideoPlayer url={video.url} title={title} key={video.url} />
+            <VideoMeta>
+                Submitted on <TakenAt title={`Submitted on ${submittedAt}`}>{takenAt}</TakenAt> by <Recorder>{recorderName}</Recorder>
+            </VideoMeta>
+        </VideoGalleryItem>
     }
 
     render() {
@@ -262,7 +274,7 @@ class IndexPage extends React.Component<Props, State> {
         const cityItems = this.state.cities.map(this.toMenuItem)
         const officerItems = this.state.officers.map(this.toMenuItem)
 
-        const videoPlayers = this.state.videos.map(this.toVideoPlayer)
+        const videoPlayers = this.state.videos.map(this.toVideoGalleryItem)
 
         const regionLabel = this.state.selectedCountry === `United States` ? `State`
             : this.state.selectedCountry === `Canada` ? `Province`
@@ -289,6 +301,22 @@ class IndexPage extends React.Component<Props, State> {
     }
 }
 
+const VideoMeta = styled.div`
+    font-size: 0.7rem;
+    color: #777;
+    text-align: right;
+`
+
+const TakenAt = styled.span`
+    font-weight: bold;
+`
+
+const Recorder = styled.span`
+    font-weight: bold;
+`
+
+
+
 const VideoGallery = styled.div`
     display: flex;
     justify-content: space-around;
@@ -298,6 +326,11 @@ const VideoGallery = styled.div`
 `
 
 const StyledVideoPlayer = styled(VideoPlayer)`
+    width: 100%;
+    height: 100%;
+`
+
+const VideoGalleryItem = styled.div`
     width: 40%;
     height: 20rem;
     margin: 0 1rem;
