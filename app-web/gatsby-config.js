@@ -2,10 +2,10 @@
 
 module.exports = {
     siteMetadata: {
-        title: "Dance Prime Prototype",
-        description: "A prototype page of Dance Prime",
-        keywords: "dance",
-        siteUrl: "http://danceprime.com.s3-website.ca-central-1.amazonaws.com/"
+        title: "Blue in View",
+        description: "Watching the watchmen",
+        keywords: "police",
+        siteUrl: "https://blueinview.com"
     },
     plugins: [
         {
