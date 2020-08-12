@@ -30,10 +30,6 @@ const Header : React.FC<Props> = ({ className }) => {
         setOpen(false);
     };
 
-    const handleSend = () => {
-
-    }
-
     const linkedLogo = <Link to={"/"} title={toHomeTitle}>
         <StyledLogo/>
     </Link>;
@@ -41,11 +37,9 @@ const Header : React.FC<Props> = ({ className }) => {
     const logoAndMenu = <MultiItemContent>
         {linkedLogo}
         <ButtonGroup variant="contained" color="primary" aria-label="text primary button group">
-                <Button>
-                    <ButtonLink to={"/about"}>
-                        About
-                    </ButtonLink>
-                </Button>
+            <ButtonLink to={"/about"}>
+                <Button color="primary" variant={"text"}>About</Button>
+            </ButtonLink>
             <Button
                 color="primary"
                 endIcon={<SendIcon />}
@@ -81,11 +75,11 @@ const Header : React.FC<Props> = ({ className }) => {
                 <Button onClick={handleClose} color="primary">
                     Close
                 </Button>
-                <Button onClick={handleSend} color="primary" autoFocus>
-                    <ExternalButtonLink href={sendUrl}>
-                        Send a Video
-                    </ExternalButtonLink>
-                </Button>
+                <ExternalButtonLink href={sendUrl} target="_blank">
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                    Send a Video
+                    </Button>
+                </ExternalButtonLink>
             </DialogActions>
         </Dialog>
     </StyledHeader>;
@@ -104,6 +98,11 @@ const ExternalButtonLink = styled.a`
 
 const ButtonLink = styled(Link)`
     color: #fff;
+
+    .MuiButtonBase-root {
+        padding: 6px 16px;
+        border-radius: 0px;
+    }
 
     &:hover,
     &:focus {
