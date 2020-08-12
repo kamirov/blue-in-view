@@ -1,8 +1,8 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
 export const colors = {
-    primary: '#46c1be',
-    secondary: '#f68b1f',
+    primary: '#3D7ED9',
+    secondary: '#C12020',
     success: '#37b635',
     error: '#ec1818',
     text: '#444',
@@ -36,6 +36,19 @@ const theme = createMuiTheme({
         },
         background: {
             default: colors.background,
+        },
+    },
+
+    overrides: {
+        MuiInput: {
+            underline: {
+                // color: '#fff'
+            }
+        },
+        MuiSelect: {
+            filled: {
+                // background: '#fff',
+            },
         },
     },
 })

@@ -29,7 +29,8 @@ export const dimensions = {
         regular: 1.5,
         heading: 1.2
     },
-    containerPadding: 1.5
+    containerPadding: "0.2rem",
+    containerSidePadding: "0.2rem"
 }
 
 export const heights = {
