@@ -315,14 +315,16 @@ const Recorder = styled.span`
     font-weight: bold;
 `
 
-
-
 const VideoGallery = styled.div`
     display: flex;
     justify-content: space-around;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    // border-top: 2px solid ${colors.secondary}
+    margin-top: 3rem;
+
+    @media (max-width: 700px) {
+        flex-wrap: wrap;
+        margin-top: 0;
+        padding-top: 0;
+    }
 `
 
 const StyledVideoPlayer = styled(VideoPlayer)`
@@ -331,9 +333,13 @@ const StyledVideoPlayer = styled(VideoPlayer)`
 `
 
 const VideoGalleryItem = styled.div`
-    width: 40%;
+    width: 100%;
     height: 20rem;
-    margin: 0 1rem;
+    margin: 0 2%;
+
+    @media (max-width: 700px) {
+        margin-top: 3rem;
+    }
 `
 
 const FilterBar = styled.div`
@@ -343,12 +349,25 @@ const FilterBar = styled.div`
     > * {
         display: flex;
         justify-content: space-around;
+
+        @media (max-width: 700px) {
+            flex-wrap: wrap;
+        }
+    }
+
+    @media (max-width: 700px) {
+        padding-top: 0;
     }
 `
 
 const StyledFilter = styled(Filter)`
-    width: 20%;
+    width: 100%;
     margin: 0 5% 0 0;
+
+    @media (max-width: 700px) {
+        width: 40%;
+        margin-top: 1rem;
+    }
 `
 
 export const query = graphql`

@@ -32,11 +32,12 @@ const Header : React.FC<Props> = ({ className }) => {
 
     const linkedLogo = <Link to={"/"} title={toHomeTitle}>
         <StyledLogo/>
+        <Subtitle>Keeping watch on our police officers</Subtitle>
     </Link>;
 
     const logoAndMenu = <MultiItemContent>
         {linkedLogo}
-        <ButtonGroup variant="contained" color="primary" aria-label="text primary button group">
+        <StyledButtonGroup variant="contained" color="primary" aria-label="text primary button group">
             <ButtonLink to={"/about"}>
                 <Button color="primary" variant={"text"}>About</Button>
             </ButtonLink>
@@ -47,16 +48,11 @@ const Header : React.FC<Props> = ({ className }) => {
             >
                 Send a Video
             </Button>
-        </ButtonGroup>
+        </StyledButtonGroup>
     </MultiItemContent>;
 
     return <StyledHeader className={className}>
         {logoAndMenu}
-        <Container>
-            <Link to={"/"} title={toHomeTitle}>
-                <Subtitle>Keeping watch on our police officers</Subtitle>
-            </Link>
-        </Container>
         <Dialog
             open={open}
             onClose={handleClose}
@@ -110,17 +106,6 @@ const ButtonLink = styled(Link)`
     }
 `
 
-const Subtitle = styled.span`
-    text-align: center;
-    position: absolute;
-    top: -2.6rem;
-    font-size: 0.8rem;
-    left: 14rem;
-    font-style: oblique;
-    font-weight: bold;
-    color: #444;
-`
-
 const Content = styled(Container)`
     display: flex;
     flex-direction: row;
@@ -131,12 +116,46 @@ const Content = styled(Container)`
 
 const MultiItemContent = styled(Content)`
     justify-content: space-between;
-    padding: 1rem 1rem 2rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 `;
+
+const StyledButtonGroup = styled(ButtonGroup)`
+    @media (max-width: 700px) {
+        margin: 1.5rem auto 0;
+    }
+`
 
 const StyledLogo = styled(Logo)`
     height: 60px;
     width: auto;
+
+    @media (max-width: 700px) {
+        height: 80px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
 `;
+
+const Subtitle = styled.span`
+    text-align: center;
+    position: absolute;
+    top: 4.5rem;
+    font-size: 0.8rem;
+    left: 14rem;
+    font-style: oblique;
+    font-weight: bold;
+    color: #666;
+
+    @media (max-width: 700px) {
+        display: block;
+        position: relative;
+        top: -0.5rem;
+        left: 0;
+        text-align: center;
+        width: 100%;
+    }
+`
 
 export default Header;

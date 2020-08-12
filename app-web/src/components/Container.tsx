@@ -8,6 +8,7 @@ const StyledContainer = styled.div`
   margin-right: auto;
   width: 100%;
   max-width: ${widths.xl}px;
+  padding: 0 1rem;
 `
 
 interface ContainerProps {

@@ -5,6 +5,7 @@ import IndexLayout from '../layouts'
 import { FunctionComponent } from 'react'
 import styled from "@emotion/styled";
 import { widths } from "../styles/dimensions";
+import Container from "../components/Container";
 
 type Props = {
     data: {
@@ -47,9 +48,13 @@ const Heading = styled.h1`
     text-align: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
+
+    @media only screen and (max-width: 700px) {
+        margin-top: 0;
+    }
 `
 
-const Content = styled.div`
+const Content = styled(Container)`
     max-width: ${widths.md}px;
     margin: auto;
 

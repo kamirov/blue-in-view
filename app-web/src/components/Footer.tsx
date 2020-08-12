@@ -2,7 +2,6 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import { Link } from "gatsby";
 import Container from "./Container";
-import { dimensions } from "../styles/dimensions";
 
 interface Props {
     className?: string
@@ -54,7 +53,7 @@ const FooterMenuLink = styled(Link)`
 const StyledFooter = styled.footer`
     border-top: 2px solid #eee;
     padding-top: 1rem;
-    margin-top: 1rem;
+    margin-top: 5rem;
     margin-bottom: 1rem;
 `
 
