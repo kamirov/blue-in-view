@@ -6,7 +6,7 @@ const StyledContainer = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  width: auto;
+  width: 100%;
   max-width: ${widths.xl}px;
 `
 
